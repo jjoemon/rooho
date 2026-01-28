@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///Users/joemonjose/software/nextjs26/rooho/app/page.tsx"],"sourcesContent":["export default function Home() {\n  return (\n    <section className=\"mx-auto max-w-3xl px-6 py-24 text-center sm:text-left\">\n      <h2 className=\"text-3xl font-semibold tracking-tight\">\n        RooHo! - Roots & Horizons\n      </h2>\n\n      <p className=\"mt-6 text-lg text-zinc-600 dark:text-zinc-400\">\n        learning app\n      </p>\n    </section>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAQ,WAAU;;0BACjB,8OAAC;gBAAG,WAAU;0BAAwC;;;;;;0BAItD,8OAAC;gBAAE,WAAU;0BAAgD;;;;;;;;;;;;AAKnE"}}]
+}

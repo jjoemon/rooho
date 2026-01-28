@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables */
+:root {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+}
+
+/* Dark mode support (optional but recommended) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #020617;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+  }
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Responsive typography */
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+}
+
+p {
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  color: var(--muted);
+}
+
+/* Code text */
+code,
+pre {
+  font-family: var(--font-mono);
+}

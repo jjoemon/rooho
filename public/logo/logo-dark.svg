@@ -1,0 +1,22 @@
+<svg width="260" height="64" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book -->
+  <path d="M8 14C8 10.686 10.686 8 14 8H40C44.418 8 48 11.582 48 16V46C48 42.686 45.314 40 42 40H14C10.686 40 8 42.686 8 46V14Z" fill="#60A5FA"/>
+  <path d="M48 16C48 11.582 51.582 8 56 8H82C85.314 8 88 10.686 88 14V46C88 42.686 85.314 40 82 40H54C50.686 40 48 42.686 48 46V16Z" fill="#3B82F6"/>
+
+  <!-- Pages -->
+  <path d="M18 14H38C41.314 14 44 16.686 44 20V40H18V14Z" fill="#020617"/>
+  <path d="M52 14H72C75.314 14 78 16.686 78 20V40H52V14Z" fill="#020617"/>
+
+  <!-- Speech bubble -->
+  <path d="M56 0H86C94.837 0 102 6.716 102 15C102 23.284 94.837 30 86 30H76L68 38V30H56C47.163 30 40 23.284 40 15C40 6.716 47.163 0 56 0Z" fill="#2DD4BF"/>
+
+  <!-- Dots -->
+  <circle cx="62" cy="15" r="2" fill="#020617"/>
+  <circle cx="70" cy="15" r="2" fill="#020617"/>
+  <circle cx="78" cy="15" r="2" fill="#020617"/>
+
+  <!-- Text -->
+  <text x="120" y="42" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="600">
+    <tspan fill="#E5E7EB">e</tspan><tspan fill="#94A3B8">Debator</tspan>
+  </text>
+</svg>
