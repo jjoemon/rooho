@@ -2,37 +2,30 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import RooHoLogo from "@/app/components/ui/logo-rooho";
 import { signOut, useSession } from "next-auth/react";
+import { lusitana } from '@/app/components/ui/fonts';
 
 export default function Header() {
   const { data: session, status } = useSession();
 
   return (
-    <header className="w-full border-b border-zinc-200 dark:border-zinc-800">
+    <header className="w-full border-b border-zinc-200 bg-black text-white dark:border-zinc-800">
       <div className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-4">
 
       {/* Left: Logo */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/logo/faf.png"
-            alt="faf logo"
-            width={1200}
-            height={1200}
-            priority
-            className="dark:hidden h-10 w-auto md:h-12 lg:h-14"
-          />
-          </Link>
+          <RooHoLogo />
         </div>
 
         {/* Center: Title */}
-        <div className="text-center">
-          <h1 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-             Roots & Horizons
+        <div className="flex-1 text-center min-w-[120px]">
+          <h1
+            className={`${lusitana.className} font-extrabold text-red-500 drop-shadow-lg leading-tight
+            text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl truncate`}
+          >
+            Roots & Horizons
           </h1>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            play and learn as you go
-          </p>
         </div>
 
         {/* Right: Navigation + Auth */}
@@ -65,7 +58,7 @@ export default function Header() {
 
               <Link
                 href="/signup"
-                className="rounded-full bg-zinc-900 px-4 py-1.5 text-zinc-50 transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                className="rounded-full bg-zinc-900 px-4 py-1.5 text-white transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
                 Sign up
               </Link>
