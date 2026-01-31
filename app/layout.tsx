@@ -46,7 +46,7 @@ export default function RootLayout({
             <main className="flex-1 flex flex-col justify-start m-0 p-0">{children}</main>
 
           </ErrorBoundary>
-          <Footer />
+        
         </div>
         </Providers>
       </body>
