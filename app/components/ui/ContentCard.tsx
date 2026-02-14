@@ -1,12 +1,10 @@
 "use client";
 
-import React from "react";
-
 type ContentCardProps = {
   children: React.ReactNode;
   className?: string;
-  variant?: "phoneFrame" | "responsive";
-  blur?: boolean;      // NEW
+  variant?: "responsive" | "phoneFrame";
+  blur?: boolean;
 };
 
 export default function ContentCard({
@@ -16,19 +14,31 @@ export default function ContentCard({
   blur = true,
 }: ContentCardProps) {
   const baseStyle = {
-    backgroundColor: "rgba(255,255,255,0.1)", // slightly stronger
-    WebkitBackdropFilter: blur ? "blur(14px)" : "none",
-    backdropFilter: blur ? "blur(14px)" : "none",
+    background: "rgba(255, 255, 255, 0.08)", // glass tint
+    WebkitBackdropFilter: blur ? "blur(18px) saturate(160%)" : "none",
+    backdropFilter: blur ? "blur(18px) saturate(160%)" : "none",
   };
 
   const cardClass = `
     rounded-[2rem]
-    border border-white/20
-    shadow-[0_4px_20px_rgba(255,255,255,0.05)]
-    p-4
+    border border-white/30
+    shadow-[0_8px_32px_rgba(0,0,0,0.15)]
+    p-6
     flex flex-col items-center
     text-white
     overflow-hidden
+    relative
+
+    before:absolute
+    before:inset-0
+    before:rounded-[2rem]
+    before:bg-gradient-to-br
+    before:from-white/20
+    before:to-white/0
+    before:opacity-40
+    before:pointer-events-none
+    animate-[pulse_6s_ease-in-out_infinite]
+
     ${className}
   `;
 

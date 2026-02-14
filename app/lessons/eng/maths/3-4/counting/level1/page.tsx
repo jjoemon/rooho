@@ -1,9 +1,10 @@
-// src/app/lessons/eng/maths/3-4/level1/counting/page.tsx
+// src/app/lessons/eng/maths/3-4/counting/level1/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 type Phase = "intro" | "numbers" | "examples" | "repeat" | "done";
 
@@ -14,6 +15,7 @@ const numberData = [
 ];
 
 export default function CountingLevel1() {
+  const router = useRouter();
   const [phase, setPhase] = useState<Phase>("intro");
   const [currentNumber, setCurrentNumber] = useState(0);
   const [character, setCharacter] = useState<"ladli" | "gabbu">("ladli");
@@ -110,14 +112,14 @@ export default function CountingLevel1() {
     repeat();
   }, [phase]);
 
-  // Phase 5: Final encouragement (Giligili)
-  useEffect(() => {
-    if (phase !== "done") return;
-    const utter = new SpeechSynthesisUtterance("Wow! You have done an amazing job!");
-    utter.rate = 1;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
-  }, [phase]);
+  const handlePlayAgain = () => {
+    setCurrentNumber(0);
+    setPhase("intro");
+  };
+
+  const handleContinue = () => {
+    router.push("/lessons/eng/maths/3-4/counting/level2");
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-b from-blue-100 to-pink-100 text-gray-800 text-center px-6 py-10 space-y-8">
@@ -155,6 +157,27 @@ export default function CountingLevel1() {
           />
           <h1 className="text-2xl font-bold text-green-700">Giligili says:</h1>
           <p className="text-xl font-semibold">“You have done an amazing job!”</p>
+
+          {/* Play Again / Continue buttons */}
+          <div className="flex flex-col gap-3 mt-4 w-40">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handlePlayAgain}
+              className="w-full bg-green-500 hover:bg-green-600 py-3 rounded-xl font-semibold shadow-md text-white"
+            >
+              ▶ Play Again
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleContinue}
+              className="w-full bg-blue-500 hover:bg-blue-600 py-3 rounded-xl font-semibold shadow-md text-white"
+            >
+              ➡ Continue
+            </motion.button>
+          </div>
         </motion.div>
       )}
 

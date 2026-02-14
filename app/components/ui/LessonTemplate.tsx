@@ -1,55 +1,70 @@
 "use client";
 
-import ContentCard from "@/app/components/ui/ContentCard";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import React from "react";
 
 type LessonTemplateProps = {
-  characterMessage?: string;
-  videoSrc?: string;
-  children?: React.ReactNode;       // lesson-specific content
+  title: string;
+  description: string;
+  children: React.ReactNode;
+  onPlayAgain?: () => void;
+  continuePath?: string;
+  hideControls?: boolean;
 };
 
 export default function LessonTemplate({
-  characterMessage,
-  videoSrc,
+  title,
+  description,
   children,
+  onPlayAgain,
+  continuePath,
+  hideControls = false,
 }: LessonTemplateProps) {
+  const router = useRouter();
+
   return (
-    <ContentCard variant="responsive" className="p-6">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-6 p-6 text-white">
 
-      {/* Character message */}
-      {characterMessage && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-4"
-        >
-          <div className="inline-block bg-transparent text-white text-lg font-medium px-4 py-2">
-            {characterMessage}
-          </div>
-        </motion.div>
-      )}
+      {/* Header */}
+      <div className="text-center max-w-md">
+        <h1 className="text-3xl font-bold mb-2">{title}</h1>
+        <p className="opacity-80">{description}</p>
+      </div>
 
-      {/* Character animation */}
-      {videoSrc && (
-        <motion.video
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-64 h-64 object-contain rounded-2xl mb-6"
-          src={videoSrc}
-        />
-      )}
-
-      {/* Lesson-specific UI (buttons, tasks, activities, etc.) */}
-      <div className="w-full flex flex-col items-center gap-4">
+      {/* Main content */}
+      <div className="w-full flex justify-center">
         {children}
       </div>
-    </ContentCard>
+
+      {/* Controls */}
+      {!hideControls && (
+        <div className="flex flex-col gap-4 w-full max-w-xs mt-6">
+
+          {onPlayAgain && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onPlayAgain}
+              className="w-full bg-green-500 hover:bg-green-600 py-3 rounded-xl font-semibold shadow-md"
+            >
+              ▶ Play Again
+            </motion.button>
+          )}
+
+          {continuePath && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push(continuePath)}
+              className="w-full bg-blue-500 hover:bg-blue-600 py-3 rounded-xl font-semibold shadow-md"
+            >
+              ➡ Continue
+            </motion.button>
+          )}
+
+        </div>
+      )}
+    </div>
   );
 }
