@@ -74,7 +74,7 @@ export default function Age3to4Page() {
             onClick={() => router.push(l.path)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center justify-between bg-blue-500/80 hover:bg-blue-600 text-white font-semibold py-3 px-5 rounded-xl text-lg shadow-md"
+            className="flex items-center justify-between bg-blue-500/80 hover:bg-blue-600  font-semibold py-3 px-5 rounded-xl text-lg shadow-md"
           >
             {l.label}
             <ArrowRight className="w-6 h-6" />
