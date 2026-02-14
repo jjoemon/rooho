@@ -43,7 +43,7 @@ export default function HomePage() {
 
         <div className="mt-4 px-2 text-center p-6">
           <h2 className="text-3xl font-bold">Welcome to RooHo!</h2>
-          <p className="text-sm font-semibold opacity-800 mt-1 p-6">
+          <p className="text-sm font-semibold  mt-1 p-6">
             Explore culturally embedded learning experiences through play and creativity.
           </p>
         </div>

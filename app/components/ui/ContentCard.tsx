@@ -16,7 +16,7 @@ export default function ContentCard({
   blur = true,
 }: ContentCardProps) {
   const baseStyle = {
-    backgroundColor: "rgba(255,255,255,0.03)",
+    backgroundColor: "rgba(255,255,255,0.1)", // slightly stronger
     WebkitBackdropFilter: blur ? "blur(14px)" : "none",
     backdropFilter: blur ? "blur(14px)" : "none",
   };
