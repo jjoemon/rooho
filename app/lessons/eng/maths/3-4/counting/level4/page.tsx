@@ -126,11 +126,10 @@ export default function CountingLevel4() {
 
   return (
     <LessonTemplate
-      title="Counting Level 4"
-      description="Learn to count from 1 to 10 with flowers!"
-      onPlayAgain={handlePlayAgain}
-      continuePath="/lessons/eng/maths/3-4/counting/summary"
+      title="Counting Level 2"
+      description="Learn to count from 1 to 5 with flowers!"
     >
+
       <div className="flex flex-col items-center justify-center gap-6">
 
         {phase !== "done" && (

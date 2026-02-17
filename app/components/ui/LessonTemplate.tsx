@@ -1,70 +1,74 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import React from "react";
 
 type LessonTemplateProps = {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-  onPlayAgain?: () => void;
-  continuePath?: string;
+  children: ReactNode;
+  title?: string;
+  description?: string;
+  characterMessage?: string;
+  videoSrc?: string;
   hideControls?: boolean;
 };
 
 export default function LessonTemplate({
+  children,
   title,
   description,
-  children,
-  onPlayAgain,
-  continuePath,
-  hideControls = false,
+  characterMessage,
+  videoSrc,
 }: LessonTemplateProps) {
-  const router = useRouter();
-
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-6 p-6 text-white">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-start px-6 py-6">
 
-      {/* Header */}
-      <div className="text-center max-w-md">
-        <h1 className="text-3xl font-bold mb-2">{title}</h1>
-        <p className="opacity-80">{description}</p>
-      </div>
+      {/* CONTENT */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center"
+      >
+        {/* Header */}
+        {(title || description) && (
+          <div className="mb-6">
+            {title && (
+              <h1 className="text-3xl md:text-4xl font-bold text-zinc-800 dark:text-white">
+                {title}
+              </h1>
+            )}
+            {description && (
+              <p className="text-zinc-600 dark:text-zinc-300 mt-2">
+                {description}
+              </p>
+            )}
+          </div>
+        )}
 
-      {/* Main content */}
-      <div className="w-full flex justify-center">
-        {children}
-      </div>
+        {/* Character */}
+        {characterMessage && videoSrc && (
+          <div className="flex flex-col items-center mb-6">
+            <video
+              src={videoSrc}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-40 h-40 object-contain mb-3"
+            />
+            <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-md rounded-xl px-4 py-2 shadow-md">
+              <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                {characterMessage}
+              </p>
+            </div>
+          </div>
+        )}
 
-      {/* Controls */}
-      {!hideControls && (
-        <div className="flex flex-col gap-4 w-full max-w-xs mt-6">
-
-          {onPlayAgain && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={onPlayAgain}
-              className="w-full bg-green-500 hover:bg-green-600 py-3 rounded-xl font-semibold shadow-md"
-            >
-              ▶ Play Again
-            </motion.button>
-          )}
-
-          {continuePath && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => router.push(continuePath)}
-              className="w-full bg-blue-500 hover:bg-blue-600 py-3 rounded-xl font-semibold shadow-md"
-            >
-              ➡ Continue
-            </motion.button>
-          )}
-
+        {/* Page Content */}
+        <div className="w-full flex justify-center items-start">
+          {children}
         </div>
-      )}
+      </motion.div>
     </div>
   );
 }

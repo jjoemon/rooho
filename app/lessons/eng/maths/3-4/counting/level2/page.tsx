@@ -130,9 +130,8 @@ export default function CountingLevel2() {
     <LessonTemplate
       title="Counting Level 2"
       description="Learn to count from 1 to 5 with flowers!"
-      onPlayAgain={handlePlayAgain}
-      continuePath="/lessons/eng/maths/3-4/counting/level3"
     >
+
       <div className="flex flex-col items-center justify-center gap-6">
 
         {/* Character */}

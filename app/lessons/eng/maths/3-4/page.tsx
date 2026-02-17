@@ -27,10 +27,11 @@ export default function Age3to4TasksPage() {
 
   return (
     <LessonTemplate
-      title="Age 3–4 Learning Activities"
-      description="Choose an activity to start learning!"
-      hideControls
-    >
+    title="Counting Level 2"
+    description="Learn to count from 1 to 5 with flowers!"
+  >
+
+
       <div className="grid grid-cols-1 gap-4 w-full max-w-md">
         {tasks.map((task) => (
           <motion.button
