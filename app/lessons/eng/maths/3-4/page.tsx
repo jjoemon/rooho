@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import LessonTemplate from "@/app/components/ui/LessonTemplate";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const tasks = [
   {
@@ -27,12 +28,44 @@ export default function Age3to4TasksPage() {
 
   return (
     <LessonTemplate
-    title="Counting Level 2"
-    description="Learn to count from 1 to 5 with flowers!"
-  >
+      title=""
+      description="Choose a fun activity to start learning 🎈"
+    >
+
+    {/* Guide Character - Top Left of Card */}
+  <div className="absolute top-4 left-4 z-20 flex items-start gap-3">
+
+    {/* Soft Presence Circle */}
+    <div className="relative">
+      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border border-blue-100  bg-blue-500/10 flex items-center justify-center shadow-md">
+        <div className="w-[88%] h-[88%] rounded-full bg-white/70 backdrop-blur-md flex items-center justify-center">
+          <div className="w-[80%] h-[80%] rounded-full overflow-hidden">
+            <Image
+              src="/images/characters/kaka.png"
+              alt="Kaka guide"
+              width={120}
+              height={120}
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Intro Bubble */}
+    <div className="bg-white backdrop-blur-md rounded-xl px-3 py-2 shadow-sm max-w-[200px] border border-blue-100">
+      <p className="text-xs sm:text-sm font-medium text-zinc-800">
+        Kiddo! Let’s choose an activity together! 😊
+      </p>
+    </div>
+
+  </div>
 
 
-      <div className="grid grid-cols-1 gap-4 w-full max-w-md">
+
+      {/* Activities */}
+      <div className="grid grid-cols-1 gap-4 w-full max-w-md mt-24">
         {tasks.map((task) => (
           <motion.button
             key={task.label}
@@ -57,6 +90,7 @@ export default function Age3to4TasksPage() {
           </motion.button>
         ))}
       </div>
+
     </LessonTemplate>
   );
 }

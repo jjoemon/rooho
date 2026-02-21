@@ -26,18 +26,18 @@ export default function LessonsPage() {
     { label: "7–8", path: "/lessons/eng/maths/7-8" },
   ];
 
-  // 🌈 Background + Voice greeting
+  // Background + Voice greeting
   useEffect(() => {
     setBackground(getRandomBackgroundImage());
     setImageSrc(getRandomImage());
 
-    // 👋 Play Uncle Joe’s greeting
+    // Play Uncle Joe’s greeting
     const audio = new Audio("/sounds/characters/uncle_kaka.mp3");
     audio.volume = 1;
     audio.play().catch((err) => console.warn("Audio playback failed:", err));
     audioRef.current = audio;
 
-    // 🧹 Cleanup: stop audio when component unmounts or user navigates away
+    //  Cleanup: stop audio when component unmounts or user navigates away
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -46,9 +46,9 @@ export default function LessonsPage() {
       }
       window.speechSynthesis.cancel();
     };
-  }, []); // 🔁 will re-run each time the user reloads or revisits this page
+  }, []); // will re-run each time the user reloads or revisits this page
 
-  // 🚪 When user selects an age group, stop any sound or speech first
+  // When user selects an age group, stop any sound or speech first
   const handleNavigation = (path: string) => {
     if (audioRef.current) {
       audioRef.current.pause();

@@ -1,19 +1,29 @@
-import { GlobeAltIcon } from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/components/ui/fonts';
-import Link from 'next/link';
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import { lusitana } from "@/app/components/ui/fonts";
+import Link from "next/link";
 
-export default function RooHoLogo() {
+type RooHoLogoProps = {
+  size?: number;        // base size in px
+  className?: string;
+};
+
+export default function RooHoLogo({ size = 36, className = "" }: RooHoLogoProps) {
   return (
-    <div className={`${lusitana.className} flex items-center gap-3 leading-none text-red-500`}>
-      {/* icon stays fixed-size (won't shrink below this) */}
-      <GlobeAltIcon className="flex-shrink-0 h-7 w-7 sm:h-9 sm:w-9 md:h-11 md:w-11 lg:h-14 lg:w-14 rotate-[15deg]" />
+    <div
+      className={`${lusitana.className} flex items-center gap-2 leading-none text-red-500 ${className}`}
+      style={{ fontSize: size }}
+    >
+      <Link href="/" className="flex items-center gap-2">
 
-      {/* link + text: responsive sizes (guaranteed larger on desktop) */}
-      <Link href="/" className="inline-block">
-        <span className="font-extrabold tracking-tight leading-none
-                         text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-        RooHo!
-        </span>
+        {/* Icon */}
+        <GlobeAltIcon
+          style={{ width: size, height: size }}
+          className="rotate-[15deg] flex-shrink-0"
+        />
+
+        {/* Optional text if you ever want it back */}
+        {/* <span className="font-extrabold">RooHO!</span> */}
+
       </Link>
     </div>
   );

@@ -1,45 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import RooHoLogo from "@/app/components/ui/logo-rooho";
 import { signOut, useSession } from "next-auth/react";
-import { lusitana } from '@/app/components/ui/fonts';
+import { lusitana } from "@/app/components/ui/fonts";
 
 export default function Header() {
   const { data: session, status } = useSession();
 
   return (
-    <header className="w-full border-b border-zinc-200 bg-black text-white dark:border-zinc-800">
-      <div className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-4">
+    <header className="w-full border-b border-zinc-800 bg-black text-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
 
-      {/* Left: Logo */}
-        <div className="flex items-center">
-          <RooHoLogo />
+        {/* Left: Logo */}
+        <div className="flex items-center gap-2">
+        <RooHoLogo
+          size={40}
+          className="sm:[font-size:32px] md:[font-size:40px] lg:[font-size:48px]"
+        />
         </div>
 
-        {/* Center: Title */}
-        <div className="flex-1 text-center min-w-[120px]">
+        {/* Center: Brand */}
+        <div className="flex flex-col items-center text-center leading-none select-none">
           <h1
-            className={`${lusitana.className} font-extrabold text-red-500 drop-shadow-lg leading-tight
-            text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl truncate`}
+            className={`
+              ${lusitana.className}
+              font-extrabold
+              text-red-500
+              drop-shadow-lg
+              tracking-wide
+              text-xl sm:text-2xl md:text-3xl lg:text-4xl
+            `}
           >
-            Roots & Horizons
+            RooHo!
           </h1>
+          <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.25em] uppercase text-zinc-300">
+            roots and horizons
+          </span>
         </div>
 
-        {/* Right: Navigation + Auth */}
-        <div className="flex items-center justify-end gap-6 text-sm">
+        {/* Right: Auth */}
+        <div className="flex items-center gap-2 text-xs sm:text-sm">
           {status === "loading" ? null : session ? (
             <>
-              <span className="text-zinc-600 dark:text-zinc-400">
-                { session.user?.name}
-                {session.user?.email}
-              </span>
-
               <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
-                className="hover:text-zinc-900 dark:hover:text-zinc-50"
+                className="px-2 py-1 rounded-md border border-zinc-700 hover:bg-zinc-800 transition"
               >
                 Sign out
               </button>
@@ -48,23 +54,21 @@ export default function Header() {
             <>
               <Link
                 href="/login"
-                className="hover:text-zinc-900 dark:hover:text-zinc-50"
+                className="px-2 py-1 rounded-md hover:bg-zinc-800 transition"
               >
                 Sign in
               </Link>
 
-              {/* Divider */}
-              <span className="h-4 w-px bg-zinc-300 dark:bg-zinc-700" />
-
               <Link
                 href="/signup"
-                className="rounded-full bg-zinc-900 px-4 py-1.5 text-white transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition font-semibold"
               >
                 Sign up
               </Link>
             </>
           )}
         </div>
+
       </div>
     </header>
   );
