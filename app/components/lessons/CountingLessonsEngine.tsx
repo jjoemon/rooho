@@ -33,26 +33,27 @@ export default function CountingLessonsEngine({ data }: Props) {
   const numbers = data.numbers;
 
   /* ------------------ STEPS ------------------ */
-  const steps: Step[] = [
-    // Meaning
-    ...numbers.slice(0, 3).map(n => ({
+    const steps: Step[] = [
+    // Meaning phase
+    ...numbers.map(n => ({
       type: "single" as const,
       number: n.number
     })),
 
-    // Repetition
-    ...numbers.slice(0, 3).map(n => ({
+    // Participation phase
+    ...numbers.map(n => ({
       type: "single" as const,
       number: n.number,
       repeat: true
     })),
 
-    // Ordering
+    // Ordering phase
     { type: "together" },
 
     // End
     { type: "end" }
   ];
+
 
 
   const [stepIndex, setStepIndex] = useState(0);
@@ -150,69 +151,68 @@ export default function CountingLessonsEngine({ data }: Props) {
 
       {/* ---------- TOGETHER / ORDERING ---------- */}
       {step?.type === "together" && (
-        <>
-          {/* LINE BY LINE MEANING VIEW */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-6 mt-8 w-full max-w-xl"
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col gap-3 mt-6 w-full max-w-3xl mx-auto"
+      >
+        {numbers.map((n) => (
+          <div
+            key={n.number}
+            className="flex items-center gap-4 py-1"
           >
-            {numbers.map((n) => (
-              <div
-                key={n.number}
-                className="flex items-center gap-6 bg-white rounded-2xl p-4 shadow-lg border"
-              >
-                {/* Number */}
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-extrabold text-white shadow-lg flex-shrink-0"
-                  style={{ backgroundColor: n.color }}
-                >
-                  {n.number}
-                </div>
-
-                {/* Objects */}
-                <div className="flex flex-wrap gap-2">
-                  {Array.from({ length: n.number }).map((_, i) => (
-                    <Image
-                      key={i}
-                      src={n.image}
-                      alt="object"
-                      width={46}
-                      height={46}
-                      className="rounded-full border-2 border-pink-200 shadow-sm"
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* ---------- PAUSE ACTIONS ---------- */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="flex gap-4 mt-10 p-4 rounded-2xl bg-gray-900/80 shadow-2xl border border-white/20"
-          >
-
-          <button
-            onClick={() => setStepIndex(0)}
-            className="bg-green-600 hover:bg-green-700 text-white px-7 py-3 rounded-xl font-bold shadow-xl ring-2 ring-green-300/40"
+            {/* Number bubble */}
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-extrabold text-white shadow-md flex-shrink-0"
+              style={{ backgroundColor: n.color }}
             >
-            ▶ Play Again
-            </button>
+              {n.number}
+            </div>
 
-            <button
-            onClick={() => router.push(data.continuePath)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-xl font-bold shadow-xl ring-2 ring-blue-300/40"
-            >
-            ➡ Continue
-            </button>
+            {/* Objects */}
+            <div className="flex flex-wrap gap-1.5">
+              {Array.from({ length: n.number }).map((_, i) => (
+                <Image
+                  key={i}
+                  src={n.image}
+                  alt="object"
+                  width={26}
+                  height={26}
+                  className="rounded-full shadow-sm"
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </motion.div>
 
-          </motion.div>
-        </>
-      )}
+    {/* Pause Actions */}
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6 }}
+      className="flex gap-6 mt-8 justify-center"
+    >
+
+      <button
+        onClick={() => setStepIndex(0)}
+        className="bg-green-600 hover:bg-green-700 text-white px-7 py-3 rounded-xl font-semibold shadow-xl"
+      >
+        ▶ Play Again
+      </button>
+
+      <button
+        onClick={() => router.push(data.continuePath)}
+        className="bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-xl font-semibold shadow-xl"
+      >
+        ➡ Continue
+      </button>
+    </motion.div>
+  </>
+)}
+
     </div>
   );
 }
