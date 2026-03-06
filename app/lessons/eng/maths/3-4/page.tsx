@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import LessonTemplate from "@/app/components/ui/LessonTemplate";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const tasks = [
   {
@@ -23,54 +23,82 @@ const tasks = [
   },
 ];
 
+const characters = [
+  { name: "Gabbu", video: "/images/characters/animations/Gabbu_YoYo.mp4" },
+  { name: "Larli", video: "/images/characters/animations/Larli_Braid.mp4" },
+];
+
 export default function Age3to4TasksPage() {
   const router = useRouter();
+  const [character, setCharacter] = useState<string>("");
+  const [backgroundMode, setBackgroundMode] = useState(false);
+
+  
+
+  useEffect(() => {
+    const randomChar = characters[Math.floor(Math.random() * characters.length)];
+    setCharacter(randomChar.video);
+
+    const timer = setTimeout(() => {
+      setBackgroundMode(true);
+    }, 3200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <LessonTemplate
-      title=""
-      description="Choose a fun activity to start learning 🎈"
-    >
+    <LessonTemplate title="" description="Choose a fun activity to start learning 🎈">
 
-    {/* Guide Character - Top Left of Card */}
-  <div className="absolute top-4 left-4 z-20 flex items-start gap-3">
+    <div className="relative w-full min-h-[80vh] flex flex-col items-center justify-center">
 
-    {/* Soft Presence Circle */}
-    <div className="relative">
-      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border border-blue-100  bg-blue-500/10 flex items-center justify-center shadow-md">
-        <div className="w-[88%] h-[88%] rounded-full bg-white/70 backdrop-blur-md flex items-center justify-center">
-          <div className="w-[80%] h-[80%] rounded-full overflow-hidden">
-            <Image
-              src="/images/characters/kaka.png"
-              alt="Kaka guide"
-              width={120}
-              height={120}
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* FULLSCREEN CHARACTER ANIMATION */}
+      {character && (
+        <motion.video
+          key={character}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className={`
+            absolute inset-0
+            w-full h-full
+            object-cover
+            z-0
+            pointer-events-none
+            transition-all duration-1500
+            ${backgroundMode
+              ? "scale-110 blur-[2px] opacity-60"
+              : "scale-100 blur-0 opacity-100"}
+          `}
+        >
+          <source src={character} type="video/mp4" />
+        </motion.video>
+      )}
 
-    {/* Intro Bubble */}
-    <div className="bg-white backdrop-blur-md rounded-xl px-3 py-2 shadow-sm max-w-[200px] border border-blue-100">
-      <p className="text-xs sm:text-sm font-medium text-zinc-800">
-        Kiddo! Let’s choose an activity together! 😊
-      </p>
-    </div>
+      {/* SOFT OVERLAY FOR READABILITY */}
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]" />
 
-  </div>
+      {/* GREETING TEXT */}
+      {!backgroundMode && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-20 text-center mb-8"
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-800">
+            Why don't you choose an activity?
+          </h2>
+        </motion.div>
+      )}
 
-
-
-      {/* Activities */}
-      <div className="grid grid-cols-1 gap-4 w-full max-w-md mt-24">
+      {/* ACTIVITY BUTTONS */}
+      <div className="relative z-20 grid grid-cols-1 gap-4 w-full max-w-md mt-20">
         {tasks.map((task) => (
           <motion.button
             key={task.label}
             onClick={() => router.push(task.path)}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="
               w-full
@@ -90,7 +118,7 @@ export default function Age3to4TasksPage() {
           </motion.button>
         ))}
       </div>
-
-    </LessonTemplate>
+      </div>
+      </LessonTemplate>
   );
 }

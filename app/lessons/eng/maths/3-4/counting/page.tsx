@@ -47,7 +47,7 @@ export default function CountingPage() {
           {/* Speech Bubble */}
           <div className="bg-white/80 backdrop-blur-md rounded-xl px-3 py-2 shadow-sm max-w-[200px] border border-blue-100">
             <p className="text-xs sm:text-sm font-medium text-zinc-800">
-              Choose your level 🌟
+              Choose a level 🌟
             </p>
           </div>
 
