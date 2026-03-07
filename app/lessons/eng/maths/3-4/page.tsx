@@ -33,7 +33,7 @@ export default function Age3to4TasksPage() {
   const [character, setCharacter] = useState<string>("");
   const [backgroundMode, setBackgroundMode] = useState(false);
 
-  
+
 
   useEffect(() => {
     const randomChar = characters[Math.floor(Math.random() * characters.length)];
