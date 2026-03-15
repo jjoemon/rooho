@@ -1,6 +1,6 @@
 // /app/utils/randomImage.tsx
 // Define the specific keys (the colors) that are valid for imageStructure
-type ColorKey = 'red' | 'blue' | 'purple' | 'yellow' | 'white' | 'other';
+type ColorKey = 'red' | 'blue' | 'yellow' | 'white' | 'pink' | 'orange';
 
 // Define the type for the image structure object
 type ImageStructure = Record<ColorKey, string[]>;
@@ -8,35 +8,36 @@ type ImageStructure = Record<ColorKey, string[]>;
 // Define your available image structure
 const imageStructure: ImageStructure = {
   red: [
-    "/images/objects/red/flower1.jpg",
-    "/images/objects/red/flower2.jpg",
-    "/images/objects/red/flower3.jpg",
-    "/images/objects/red/flower4.jpg",
+    "/images/objects/flowers/red/red1.jpg",
+    "/images/objects/flowers/red/red2.jpg",
+    "/images/objects/flowers/red/red3.jpg",
+    "/images/objects/flowers/red/red4.jpg",
   ],
   blue: [
-    "/images/objects/blue/flower1.jpg",
+    "/images/objects/flowers/blue/blue1.jpg",
+    "/images/objects/flowers/blue/blue2.jpg",
+    "/images/objects/flowers/blue/blue3.jpg",
   ],
-  purple: [
-    "/images/objects/pink/flower1.jpg",
-    "/images/objects/pink/flower2.jpg",
-    "/images/objects/pink/flower3.jpg",
-    "/images/objects/pink/flower4.jpg",
-    "/images/objects/pink/flower5.jpg",
+  pink: [
+    "/images/objects/flowers/pink/pink1.jpg",
+    "/images/objects/flowers/pink/pink2.jpg",
+    "/images/objects/flowers/pink/pink3.jpg",
+    "/images/objects/flowers/pink/pink4.jpg",
+    "/images/objects/flowers/pink/pink5.jpg",
   ],
   yellow: [
-    "/images/objects/yellow/flower1.jpg",
-    "/images/objects/yellow/flower2.jpg",
-    "/images/objects/yellow/flower3.jpg",
-    "/images/objects/yellow/flower4.jpg",
+    "/images/objects/flowers/yellow/yellow1.jpg",
+    "/images/objects/flowers/yellow/yellow2.jpg",
+    "/images/objects/flowers/yellow/yellow3.jpg",
   ],
   white: [
-    "/images/objects/white/flower1.jpg",
-    "/images/objects/white/flower2.jpg",
+    "/images/objects/flowers/white/white1.jpg",
+    "/images/objects/flowers/white/white2.jpg",
   ],
-  other: [
-    "/images/objects/other/flower1.jpg",
-    "/images/objects/other/flower2.jpg",
-    "/images/objects/other/flower3.jpg",
+  orange: [
+    "/images/objects/flowers/orange/orange1.jpg",
+    "/images/objects/flowers/orange/orange2.jpg",
+    "/images/objects/flowers/orange/orange3.jpg",
   ],
 };
 
